@@ -63,7 +63,6 @@ xdescribe('outputTarget, www / dist / docs', () => {
     expectFiles(compiler.fs, [
       path.join(root, 'User', 'testing', 'custom-dist', 'cjs'),
       path.join(root, 'User', 'testing', 'custom-dist', 'esm', 'polyfills', 'index.js'),
-      path.join(root, 'User', 'testing', 'custom-dist', 'esm', 'polyfills', 'index.js.map'),
     ]);
 
     doNotExpectFiles(compiler.fs, [

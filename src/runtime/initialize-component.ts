@@ -84,7 +84,7 @@ export const initializeComponent = async (
       // wait for the CustomElementRegistry to mark the component as ready before setting `isWatchReady`. Otherwise,
       // watchers may fire prematurely if `customElements.get()`/`customElements.whenDefined()` resolves _before_
       // Stencil has completed instantiating the component.
-      customElements.whenDefined(cmpMeta.$tagName$).then(() => hostRef.$flags$ |= HOST_FLAGS.isWatchReady)
+      customElements.whenDefined(cmpMeta.$tagName$).then(() => (hostRef.$flags$ |= HOST_FLAGS.isWatchReady));
     }
 
     if (BUILD.style && Cstr.style) {

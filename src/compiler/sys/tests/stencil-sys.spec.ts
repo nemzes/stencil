@@ -137,8 +137,8 @@ describe('stencil system', () => {
 
   it('get home directory', async () => {
     const homedir = sys.homeDir();
-    expect(typeof homedir).toBe("string")
-  })
+    expect(typeof homedir).toBe('string');
+  });
 
   it('rename directory, with files/subfolders', async () => {
     await sys.createDir('/x/y/z', { recursive: true });
