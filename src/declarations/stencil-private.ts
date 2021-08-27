@@ -377,7 +377,7 @@ export interface RollupChunkResult {
   isBrowserLoader: boolean;
   imports: string[];
   moduleFormat: ModuleFormat;
-  map: RollupSourceMap;
+  map?: RollupSourceMap;
 }
 
 export interface BundleModule {
