@@ -22,8 +22,10 @@
   ],
   "scripts": {
     "start": "npm run watch",
-    "build": "node scripts && npm run tsc.prod && npm run rollup.prod.ci",
-    "build.prod": "node scripts && npm run tsc.scripts && npm run tsc.prod && npm run rollup.prod.ci",
+    "clean": "rm -rf build/ cli/ compiler/ dev-server/ internal/ mock-doc/ sys/ testing/",
+    "clean-scripts": "rm -rf sys-node-bundle-cache",
+    "build": "npm run clean && node scripts && npm run tsc.scripts && npm run tsc.prod && npm run rollup.prod.ci",
+    "build.prod": "npm run clean && node scripts && npm run tsc.scripts && npm run tsc.prod && npm run rollup.prod.ci",
     "watch": "node scripts && npm run tsc && concurrently \"npm run rollup.watch\" \"npm run tsc.watch\"",
     "release": "node scripts --release --publish",
     "release.prepare": "node scripts --release --prepare",
