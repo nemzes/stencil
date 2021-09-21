@@ -115,8 +115,16 @@ export const appDataPlugin = (
             file: id + '.map',
             hires: true,
           });
-          const sourceMap = results.sourceMapText ? JSON.parse(results.sourceMapText) : null;
-          return { code: results.outputText, map: sourceMapMerge(codeMap, sourceMap) };
+
+          const sourceMap: d.SourceMap = results.sourceMapText ? JSON.parse(results.sourceMapText) : null;
+          codeMap.file = sourceMap.file + `.map`;
+
+          // TODO(Temp)
+          console.log('merged');
+          const res = sourceMapMerge(codeMap, sourceMap);
+          console.log(JSON.stringify(res, null, 2));
+
+          return { code: results.outputText, map: res };
         }
 
         return { code: results.outputText };
