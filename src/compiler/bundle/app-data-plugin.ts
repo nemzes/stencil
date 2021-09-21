@@ -95,12 +95,10 @@ export const appDataPlugin = (
         const defaultExport = needsDefault ? '\nexport const globalFn = () => {};\nexport default globalFn;' : '';
         code = getContextImport(platform) + code + defaultExport;
 
-        const codeMs = new MagicString(code);
-
         const compilerOptions: ts.CompilerOptions = { ...config.tsCompilerOptions };
         compilerOptions.module = ts.ModuleKind.ESNext;
 
-        const results = ts.transpileModule(codeMs.toString(), {
+        const results = ts.transpileModule(code, {
           compilerOptions,
           fileName: id,
           transformers: {
@@ -111,6 +109,7 @@ export const appDataPlugin = (
         buildCtx.diagnostics.push(...loadTypeScriptDiagnostics(results.diagnostics));
 
         if (config.sourceMap) {
+          const codeMs = new MagicString(code);
           const codeMap = codeMs.generateMap({
             source: id,
             file: id + '.map',
