@@ -105,7 +105,6 @@ export const appDataPlugin = (
             after: [removeCollectionImports(compilerCtx)],
           },
         });
-        const sourceMap = results.sourceMapText ? JSON.parse(results.sourceMapText) : null;
         buildCtx.diagnostics.push(...loadTypeScriptDiagnostics(results.diagnostics));
 
         if (config.sourceMap) {
@@ -116,6 +115,7 @@ export const appDataPlugin = (
             includeContent: true,
             hires: true,
           });
+          const sourceMap = results.sourceMapText ? JSON.parse(results.sourceMapText) : null;
           return { code: results.outputText, map: sourceMapMerge(codeMap, sourceMap) };
         }
 
