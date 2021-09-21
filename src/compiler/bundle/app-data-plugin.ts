@@ -94,8 +94,8 @@ export const appDataPlugin = (
         const needsDefault = !(program as any).body.some((s: any) => s.type === 'ExportDefaultDeclaration');
         const defaultExport = needsDefault ? '\nexport const globalFn = () => {};\nexport default globalFn;' : '';
 
-        var codeMs = new MagicString(code);
-        codeMs.prepend(getContextImport(platform));
+        const codeMs = new MagicString(getContextImport(platform));
+        codeMs.append(code);
         codeMs.append(defaultExport);
 
         const compilerOptions: ts.CompilerOptions = { ...config.tsCompilerOptions };
