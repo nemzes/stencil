@@ -73,7 +73,14 @@ export const appDataPlugin = (
       }
 
       const module = compilerCtx.moduleMap.get(config.globalScript);
-      if (!module.sourceMapFileText) return { code: module.staticSourceFileText, map: null };
+      if (!module) {
+        return null;
+      } else if (!module.sourceMapFileText) {
+        return {
+          code: module.staticSourceFileText,
+          map: null,
+        };
+      }
 
       const sourceMap: d.SourceMap = JSON.parse(module.sourceMapFileText);
       sourceMap.sources = sourceMap.sources.map((src) => basename(src));
