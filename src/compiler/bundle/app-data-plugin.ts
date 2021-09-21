@@ -108,11 +108,11 @@ export const appDataPlugin = (
         buildCtx.diagnostics.push(...loadTypeScriptDiagnostics(results.diagnostics));
 
         if (config.sourceMap) {
+          // generate the sourcemap for global script
           const codeMs = new MagicString(code);
           const codeMap = codeMs.generateMap({
             source: id,
             file: id + '.map',
-            includeContent: true,
             hires: true,
           });
           const sourceMap = results.sourceMapText ? JSON.parse(results.sourceMapText) : null;
